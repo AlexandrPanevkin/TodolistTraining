@@ -91,6 +91,7 @@ function App() {
             {todolists.map(tl => {
                 let tasksForTodolist = tasks[tl.id];
 
+
                 if (tl.filter === "active") {
                     tasksForTodolist = tasks[tl.id].filter(t => !t.isDone);
                 }
