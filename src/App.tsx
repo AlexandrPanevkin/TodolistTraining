@@ -11,6 +11,7 @@ import {
     todolistsReducer
 } from "./Reducers/todolistsReducer";
 
+
 export type FilterValuesType = "all" | "active" | "completed";
 export type TodolistsType = {
     id: string
@@ -24,7 +25,7 @@ type tasksType = {
     isDone: boolean
 }
 export type tasksStateType = {
-    [key: string] : tasksType[]
+    [key: string]: tasksType[]
 }
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
     let todolistID1 = v1()
     let todolistID2 = v1()
 
-    let [todolists, dispatchTodolists] = useReducer(todolistsReducer, [
+    let [todolists, dispatchTodolist] = useReducer(todolistsReducer, [
         {id: todolistID1, title: 'What to learn', filter: 'all'},
         {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
@@ -51,21 +52,21 @@ function App() {
     })
 
     function removeTodolist(todolistId: string) {
-        dispatchTodolists(removeTodolistAC(todolistId))
+        dispatchTodolist(removeTodolistAC(todolistId))
     }
 
     function addTodolist(title: string) {
         let newTodolistId = v1()
-        dispatchTodolists(addTodolistAC(title, newTodolistId))
+        dispatchTodolist(addTodolistAC(newTodolistId, title))
         setTasks({...tasks, [newTodolistId]: []})
     }
 
     const changeTodolistTitle = (todolistId: string, newValue: string) => {
-        dispatchTodolists(changeTodolistTitleAC(todolistId, newValue))
+        dispatchTodolist(changeTodolistTitleAC(todolistId, newValue))
     }
 
     function changeFilter(todolistId: string, value: FilterValuesType) {
-        dispatchTodolists(changeFilterAC(todolistId, value))
+        dispatchTodolist(changeFilterAC(todolistId, value))
     }
 
     function removeTask(todolistId: string, id: string) {
