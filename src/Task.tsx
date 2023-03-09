@@ -18,6 +18,7 @@ export const Task = memo(({
                          changeTaskStatus,
                          changeTaskTitle
 }: TaskPropsType) => {
+    console.log('add item form')
     let {id, isDone, title} = {...task}
 
     const onClickHandler = () => removeTask(id)
